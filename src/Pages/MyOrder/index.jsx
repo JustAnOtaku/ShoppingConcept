@@ -1,10 +1,8 @@
-// COMPONENTS
 import { Layout } from '../../Components/Layout';
 import { OrderCard } from '../../Components/OrderCard';
 import { Link } from 'react-router-dom';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 
-// CONTEXT
 import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
 
@@ -13,12 +11,10 @@ function MyOrder() {
 		ShoppingCartContext
 	);
 
-	// URL INDEX
 	const currentPath = window.location.pathname;
 	let index = currentPath.substring(
 		currentPath.lastIndexOf('/') + 1
 	);
-	// Last case
 	if (index === 'last') {
 		index = ordersList?.length - 1;
 	}

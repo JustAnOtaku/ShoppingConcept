@@ -2,11 +2,10 @@ import {
 	useRoutes,
 	BrowserRouter,
 } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-// CONTEXT
 import { ShoppingCartProvider } from '../../Context';
 
-// APPLICATION PAGES
 import Home from '../Home';
 import MyAccount from '../MyAccount';
 import MyOrder from '../MyOrder';
@@ -14,13 +13,12 @@ import MyOrders from '../MyOrders';
 import NotFound from '../NotFound';
 import SignIn from '../SignIn';
 
-// COMPONENTS
 import { Navbar } from '../../Components/Navbar';
 import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu';
+import Hero from '../../Components/Hero';
 
 import './App.css';
 
-// ROUTES COMPONENT
 const AppRoutes = () => {
 	let routes = useRoutes([
 		{ path: '/', element: <Home /> },
@@ -54,15 +52,26 @@ const AppRoutes = () => {
 	return routes;
 };
 
-// MAIN APP COMPONENT
+function AppContent() {
+	const location = useLocation();
+	const hideHeroOn = ['/my-orders', '/my-order', '/my-account', '/sign-in'];
+	const shouldShowHero = !hideHeroOn.some((path) => location.pathname.startsWith(path));
+
+	return (
+		<>
+			{shouldShowHero && <Hero />}
+			<AppRoutes />
+			<Navbar />
+			<CheckoutSideMenu />
+		</>
+	);
+}
+
 function App() {
 	return (
 		<ShoppingCartProvider>
-			{/* <BrowserRouter basename='/platzi-react-with-vite-tailwind'> */}
 			<BrowserRouter>
-				<AppRoutes />
-				<Navbar />
-				<CheckoutSideMenu />
+				<AppContent />
 			</BrowserRouter>
 		</ShoppingCartProvider>
 	);

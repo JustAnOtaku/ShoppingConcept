@@ -19,17 +19,11 @@ const OrdersCard = (props) => {
 							{date}
 						</span>
 					</p>
-					<p className='flex items-center gap-2'>
-						<ShoppingBagIcon className='size-5' />
-						<span className='font-light'>
-							{totalProducts} {articles}
-						</span>
-					</p>
 				</div>
 
 				<p className='flex items-center gap-2'>
 					<span className='font-medium text-2xl'>
-						$ {totalPrice}
+						₱{(totalPrice * 56).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 					</span>
 					<ChevronRightIcon className='h-6 w-6 text-black cursor-pointer' />
 				</p>

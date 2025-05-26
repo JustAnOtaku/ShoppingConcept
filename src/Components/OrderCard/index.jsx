@@ -36,7 +36,7 @@ const OrderCard = (props) => {
 			</div>
 			<div className='flex items-center gap-2'>
 				<p className='text-lg font-medium'>
-					${price}
+					₱{(price * 56).toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
 				</p>
 				{renderXMarkIcon}
 			</div>
